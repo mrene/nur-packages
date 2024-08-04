@@ -19,7 +19,7 @@
     in
     {
       packages = forAllSystems (system: 
-        bySystem.${system}.packages
+        bySystem.${system}.packages.default
       );
     };
 }
