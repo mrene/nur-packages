@@ -1,6 +1,6 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/master"; # Change when #330477 is merged
   outputs = { self, nixpkgs }:
     let
       systems = [
@@ -19,7 +19,7 @@
     in
     {
       packages = forAllSystems (system: 
-        bySystem.${system}.packages.default
+        nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) bySystem.${system}.packages.default
       );
     };
 }
