@@ -8,7 +8,11 @@
 
 { system ? builtins.currentSystem, pkgs ? import <nixpkgs> { } }:
 
-(pkgs.callPackage ./pkgs {}) // {
+let 
+  packages = (pkgs.callPackage ./pkgs {});
+in
+packages // {
+  inherit packages;
   # The `lib`, `modules`, and `overlays` names are special
   lib = pkgs.callPackage ./lib { }; # functions
   modules = import ./modules; # NixOS modules

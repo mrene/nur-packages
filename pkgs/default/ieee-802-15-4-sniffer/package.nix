@@ -1,7 +1,7 @@
-{ lib, stdenvNoCC, }:
+{ lib, stdenvNoCC, gnuradioWithPackages }:
 
 let 
-  gnuradio = gnuradio;
+  gnuradio = gnuradioWithPackages;
 in
 stdenvNoCC.mkDerivation {
   name = "ieee-802-15-4-sniffer";

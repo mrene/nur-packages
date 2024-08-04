@@ -13,11 +13,13 @@
         "armv7l-linux"
       ];
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-    in
-    rec {
-      legacyPackages = forAllSystems (system: import ./default.nix {
+      bySystem = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { inherit system; };
       });
-      packages = forAllSystems (system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system});
+    in
+    {
+      packages = forAllSystems (system: 
+        bySystem.${system}.packages
+      );
     };
 }
