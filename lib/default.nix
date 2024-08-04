@@ -1,7 +1,11 @@
-{ pkgs }:
+{ lib, newScope }:
 
-with pkgs.lib; {
-  # Add your library functions here
-  #
-  # hexint = x: hexvals.${toLower x};
+{
+  scopeFromDirectoryRecursive = { directory, extra ? {} }: let
+    scope = lib.makeScope newScope (self: packages);
+    packages = lib.filesystem.packagesFromDirectoryRecursive{
+      inherit (scope) callPackage;
+      inherit directory;
+    };
+    in packages;
 }
