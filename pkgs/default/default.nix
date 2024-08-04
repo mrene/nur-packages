@@ -7,7 +7,7 @@ localLib.scopeFromDirectoryRecursive {
   directory = ./.;
   extra = {
     localGnuradioPackages = localLib.scopeFromDirectoryRecursive {
-      directory = ./gnuradio;
+      directory = ../gnuradio;
       extra = { inherit gnuradio; };
     };
   };
