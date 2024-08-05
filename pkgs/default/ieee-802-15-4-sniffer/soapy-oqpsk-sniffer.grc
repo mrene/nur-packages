@@ -237,7 +237,7 @@ blocks:
     correction1: '0'
     dc_offset0: '0'
     dc_offset1: '0'
-    dc_removal0: 'True'
+    dc_removal0: 'False'
     dc_removal1: 'True'
     dev: device
     dev_args: device_args
