@@ -16,10 +16,13 @@
       bySystem = forAllSystems (system: import ./default.nix {
         pkgs = import nixpkgs { inherit system; };
       });
+      lib = nixpkgs.lib;
     in
     {
       packages = forAllSystems (system: 
-        nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) bySystem.${system}.packages.default
+          lib.filterAttrs (_: v: 
+            (lib.isDerivation v) && (lib.meta.availableOn { inherit system; } v))
+            bySystem.${system}.packages.default
       );
     };
 }

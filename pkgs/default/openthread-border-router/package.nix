@@ -57,7 +57,6 @@ stdenv.mkDerivation {
   buildInputs =[
     avahi
     systemdLibs
-    #dbus
     protobuf
     jsoncpp
     boost

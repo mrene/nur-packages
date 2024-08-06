@@ -59,6 +59,7 @@ stdenvNoCC.mkDerivation {
 
   meta = {
     mainProgram = "ieee-802-15-4-sniffer";
+    platforms = gnuradio.meta.platforms;
   };
 }
 
