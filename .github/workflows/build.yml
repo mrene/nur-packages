@@ -23,7 +23,6 @@ jobs:
         nurRepo:
           - <YOUR_REPO_NAME>
         nixPath:
-          - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixpkgs-unstable.tar.gz
           - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz
     runs-on: ubuntu-latest
     steps:
@@ -38,14 +37,16 @@ jobs:
     - uses: DeterminateSystems/magic-nix-cache-action@main
     - name: Show nixpkgs version
       run: nix-instantiate --eval -E '(import <nixpkgs> {}).lib.version'
-    # - name: Setup cachix
-    #   uses: cachix/cachix-action@v15
-      # Don't replace <YOUR_CACHIX_NAME> here!
-      # if: ${{ matrix.cachixName != '<YOUR_CACHIX_NAME>' }}
-      # with:
-      #   name: ${{ matrix.cachixName }}
-      #   signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-      #   authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+    - name: Connect to home tailnet
+      uses: tailscale/github-action@v2
+      with:
+        authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+    - name: Setup Attic cache
+      uses: ryanccn/attic-action@v0
+      with:
+        endpoint: ${{ secrets.ATTIC_ENDPOINT }}
+        cache: ${{ secrets.ATTIC_CACHE }}
+        token: ${{ secrets.ATTIC_TOKEN }}
     - name: Check evaluation
       run: |
         nix-env -f . -qa \* --meta --xml \
