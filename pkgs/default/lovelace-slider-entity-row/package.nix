@@ -1,9 +1,10 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, buildNpmPackage
 }:
 
-stdenv.mkDerivation rec {
+buildNpmPackage rec {
   pname = "lovelace-slider-entity-row";
   version = "17.4.1";
 
@@ -13,7 +14,7 @@ stdenv.mkDerivation rec {
     rev = version;
     hash = "sha256-/unrsfM2s9vZUIQOoMEOr1n01KBgidpGRZ+NDjNNweY=";
   };
-  npmDepsHash = "sha256-9z4YzLNxNh7I4yFxuPT3/erZO4itAiqyxL1a0pUTFRs=";
+  npmDepsHash = "sha256-McydFWHwu0eiyWxq+tpqDsfgz4M4rhLzj9xtAReq40k=";
 
   installPhase = ''
     runHook preInstall
@@ -28,8 +29,6 @@ stdenv.mkDerivation rec {
   passthru = {
     entrypoint = "slider-entity-row.js";
   };
-
-  makeCacheWritable = true;
 
   meta = with lib; {
     description = "Add sliders to entity cards";
