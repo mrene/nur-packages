@@ -1,6 +1,10 @@
 {
   description = "My personal NUR repository";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/master"; # Change when #330477 is merged
+  nixConfig = {
+    extra-substituters = [ "https://nixcache.mathieurene.com/nur" ];
+    extra-trusted-public-keys = [ "nixcache.mathieurene.com-1:/HeC3enYzhY920VJrGNSUdMOqXUh3Y/zLo3+f5IZjfM=" ];
+  };
   outputs = { self, nixpkgs }:
     let
       systems = [
