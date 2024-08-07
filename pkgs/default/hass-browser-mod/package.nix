@@ -37,6 +37,6 @@ buildNpmPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ ];
     mainProgram = "hass-browser-mod";
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }

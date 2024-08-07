@@ -40,6 +40,6 @@ buildNpmPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ mrene ];
     mainProgram = "lovelace-auto-entities";
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }

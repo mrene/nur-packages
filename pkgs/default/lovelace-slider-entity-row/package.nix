@@ -36,6 +36,6 @@ buildNpmPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ ];
     mainProgram = "lovelace-slider-entity-row";
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }

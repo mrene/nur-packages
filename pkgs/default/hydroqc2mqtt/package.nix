@@ -61,6 +61,6 @@ python312.pkgs.buildPythonApplication rec {
     license = licenses.agpl3Only;
     maintainers = with maintainers; [ ];
     mainProgram = "hydroqc2mqtt";
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }

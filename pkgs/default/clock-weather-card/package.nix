@@ -48,6 +48,6 @@ mkYarnPackage rec {
     license = licenses.mit;
     maintainers = with maintainers; [ mrene ];
     mainProgram = "clock-weather-card";
-    platforms = platforms.all;
+    platforms = platforms.linux;
   };
 }
