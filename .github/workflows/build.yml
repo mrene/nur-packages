@@ -6,15 +6,14 @@ on:
       - main
       - master
   schedule:
-    # rebuild everyday at 2:51
-    # TIP: Choose a random time here so not all repositories are build at once:
-    # https://www.random.org/clock-times/?num=1&earliest=01%3A00&latest=08%3A00&interval=5&format=html&rnd=new
     - cron:  '35 6 * * *'
 jobs:
   tests:
     strategy:
       fail-fast: true
       matrix:
+        os: [ubuntu-latest, macos-latest]
+        
         # Set this to notify the global nur package registry that changes are
         # available.
         #
@@ -24,7 +23,7 @@ jobs:
           - <YOUR_REPO_NAME>
         nixPath:
           - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
