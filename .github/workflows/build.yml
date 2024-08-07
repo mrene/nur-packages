@@ -36,11 +36,10 @@ jobs:
     - uses: DeterminateSystems/magic-nix-cache-action@main
     - name: Show nixpkgs version
       run: nix-instantiate --eval -E '(import <nixpkgs> {}).lib.version'
-    - name: Connect to home tailnet
-      uses: tailscale/github-action@v2
-      if: runner.os == 'Linux'
-      with:
-        authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+    # - name: Connect to home tailnet
+    #   uses: tailscale/github-action@v2
+    #   with:
+    #     authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
     - name: Setup Attic cache
       uses: ryanccn/attic-action@v0
       with:
