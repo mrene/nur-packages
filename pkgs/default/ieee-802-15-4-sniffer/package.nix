@@ -39,7 +39,8 @@ stdenvNoCC.mkDerivation {
     mkdir -p $out/bin
     mkdir -p $out/${gr.pythonEnv.sitePackages}
     cp ./*.py $out/${gr.pythonEnv.sitePackages}
-    cp ./oqpsk_sniffer.py $out/bin/ieee-802-15-4-sniffer
+    # cp ./oqpsk_sniffer.py $out/bin/ieee-802-15-4-sniffer
+    cp ${./sniffer.py} $out/bin/ieee-802-15-4-sniffer
     runHook postInstall
   '';
 

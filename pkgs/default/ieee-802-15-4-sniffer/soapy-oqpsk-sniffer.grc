@@ -174,7 +174,7 @@ blocks:
     label: Gain
     short_id: g
     type: eng_float
-    value: '0.75'
+    value: '50'
   states:
     bus_sink: false
     bus_source: false
