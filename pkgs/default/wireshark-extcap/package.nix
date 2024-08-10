@@ -1,4 +1,5 @@
 { lib
+, stdenv
 , wireshark
 , symlinkJoin
 , makeWrapper
@@ -35,6 +36,18 @@ symlinkJoin {
   for file in $out/bin/*; do
     wrapProgram $file --prefix WIRESHARK_EXTCAP_DIR : ${onlyBin extCapDir}/bin
   done
+  '' + lib.optionalString stdenv.isDarwin ''
+  for file in $out/Applications/Wireshark.app/Contents/MacOS/*; do
+    if [[ -f $file ]]; then
+      wrapProgram $file --prefix WIRESHARK_EXTCAP_DIR : ${onlyBin extCapDir}/bin
+    fi
+  done
   '';
-  meta = wireshark.meta;
+  meta = wireshark.meta // {
+    mainProgram = if stdenv.isDarwin then 
+      # Ugly hack but it makes `nix run` work on macOS
+      "../Applications/Wireshark.app/Contents/MacOS/Wireshark" 
+    else
+      wireshark.meta.mainProgram;
+  };
 }
