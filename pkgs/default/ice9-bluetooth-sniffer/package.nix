@@ -14,12 +14,6 @@
 , lld ? null
 }:
 
-let 
-  pr-40-usrp-data-format = fetchurl {
-    url = "https://patch-diff.githubusercontent.com/raw/mikeryan/ice9-bluetooth-sniffer/pull/40.patch";
-    hash = "sha256-QeAsI1YFz4krB0yPNZqxPyspCqhawHNrUCBOo93bF78=";
-  };
-in
 stdenv.mkDerivation {
   pname = "ice9-bluetooth-sniffer";
   version = "unstable-2023-10-04";
@@ -32,7 +26,7 @@ stdenv.mkDerivation {
   };
 
   patches = [
-    pr-40-usrp-data-format
+    ./usrp-fixes.patch
   ];
 
   cmakeFlags = lib.optional stdenv.isDarwin (lib.cmakeFeature "CMAKE_EXE_LINKER_FLAGS" "-fuse-ld=lld");
