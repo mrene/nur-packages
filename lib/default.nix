@@ -1,11 +1,9 @@
 { lib, newScope }:
 
 {
-  scopeFromDirectoryRecursive = { directory, extra ? {} }: let
-    scope = lib.makeScope newScope (self: extra // packages);
-    packages = lib.filesystem.packagesFromDirectoryRecursive{
-      inherit (scope) callPackage;
+  scopeFromDirectoryRecursive = { directory }: 
+    lib.makeScope newScope (self: lib.filesystem.packagesFromDirectoryRecursive{
+      inherit (self) callPackage;
       inherit directory;
-    };
-    in packages;
+    });
 }
