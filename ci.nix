@@ -16,7 +16,7 @@ let
   isReserved = n: n == "lib" || n == "overlays" || n == "modules";
   isDerivation = p: isAttrs p && p ? type && p.type == "derivation";
   isSupported = p: pkgs.lib.meta.availableOn { inherit (pkgs) system; } p;
-  isBuildable = p: (!(p.meta.broken or false) && p.meta.license.free or true) && isSupported p;
+  isBuildable = p: !(p.meta.broken or false) && isSupported p;
   isCacheable = p: !(p.preferLocalBuild or false);
   shouldRecurseForDerivations = p: isAttrs p && p.recurseForDerivations or false;
 

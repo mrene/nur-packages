@@ -1,4 +1,4 @@
-{ callPackage, gnuradio }:
+{ callPackage }:
 let
   localLib = callPackage ../lib {};
 in
