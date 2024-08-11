@@ -1,8 +1,8 @@
-{ lib, stdenvNoCC, gnuradio, localGnuradioPackages }:
+{ lib, stdenvNoCC, gnuradio, gnuradio-modules }:
 
 let 
   gnuradioPackages = {
-    inherit (localGnuradioPackages) gr-foo gr-ieee-802-15-4;
+    inherit (gnuradio-modules) gr-foo gr-ieee-802-15-4;
   };
   gr = (gnuradio.override {
     extraPackages = builtins.attrValues gnuradioPackages;

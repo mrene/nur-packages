@@ -1,7 +1,8 @@
-{ callPackage, gnuradio }:
+{ callPackage }:
 let
   localLib = callPackage ../lib {};
 in
 
-(callPackage ./default {}) 
-
+localLib.scopeFromDirectoryRecursive {
+  directory = ./.;
+}

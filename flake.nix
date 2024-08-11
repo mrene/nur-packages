@@ -1,6 +1,6 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/master"; # Change when #330477 is merged
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nixConfig = {
     extra-substituters = [ "https://nixcache.mathieurene.com/nur" ];
     extra-trusted-public-keys = [ "nur:/HeC3enYzhY920VJrGNSUdMOqXUh3Y/zLo3+f5IZjfM=" ];
@@ -17,16 +17,14 @@
         "armv7l-linux"
       ];
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-      bySystem = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgs { inherit system; };
-      });
       lib = nixpkgs.lib;
     in
     {
       packages = forAllSystems (system: 
-          lib.filterAttrs (_: v: 
-            (lib.isDerivation v) && (lib.meta.availableOn { inherit system; } v))
-            bySystem.${system}.packages.default
+        let
+          pkgs = import nixpkgs { inherit system; config = { allowUnfree = true; }; };
+        in
+          pkgs.callPackage ./pkgs {}
       );
     };
 }
