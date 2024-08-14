@@ -7,5 +7,5 @@ let
   callPackage = self.callPackage;
 in
 {
-  gmplot = callPackage ./gmplot/package.nix { };
+  
 }))
