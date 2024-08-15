@@ -25,7 +25,8 @@ stdenv.mkDerivation rec {
   };
   
   patches = [
-    ./add-missing-cstdint.diff
+    # ./add-missing-cstdint.diff
+    ./compile-fixes.diff
   ];
 
   nativeBuildInputs = [
@@ -46,7 +47,7 @@ stdenv.mkDerivation rec {
   ];
 
   cmakeFlags = [
-    (lib.cmakeFeature "CMAKE_CXX_STANDARD" "14")
+    (lib.cmakeFeature "CMAKE_CXX_STANDARD" "11")
   ];
 
   meta = with lib; {
@@ -55,6 +56,6 @@ stdenv.mkDerivation rec {
     license = licenses.gpl3Only;
     maintainers = with maintainers; [ ];
     mainProgram = "gr-sandia-utils";
-    platforms = platforms.linux;
+    platforms = platforms.unix;
   };
 }
