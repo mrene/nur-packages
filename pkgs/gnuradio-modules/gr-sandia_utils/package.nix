@@ -24,9 +24,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-2iJv0h2kC9T+nCb+Ht254bFxlVG8zxhElm/3hYf2EF4=";
   };
   
-  patches = [
-    # ./add-missing-cstdint.diff
+  patches = lib.optionals stdenv.isDarwin [
     ./compile-fixes.diff
+  ] ++ lib.optionals (!stdenv.isDarwin) [
+    ./add-missing-cstdint.diff
   ];
 
   nativeBuildInputs = [
