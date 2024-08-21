@@ -29,12 +29,13 @@ buildHomeAssistantComponent rec {
     cp -r connectlife $out/custom_components/${domain}/
   '';
 
-  dontCheckManifest = true;
   dontBuild = true;
 
   dependencies = [
     connectlife
   ];
+
+  passthru = { inherit connectlife; };
 
   meta = with lib; {
     description = "ConnectLife integration for Home Assistant";

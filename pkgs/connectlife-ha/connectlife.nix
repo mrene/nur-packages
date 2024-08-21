@@ -1,10 +1,12 @@
 {
   lib,
-  python3,
+  buildPythonPackage,
   fetchFromGitHub,
+  aiohttp,
+  hatchling,
 }:
 
-python3.pkgs.buildPythonApplication rec {
+buildPythonPackage rec {
   pname = "connectlife";
   version = "unstable-2024-08-14";
   pyproject = true;
@@ -17,10 +19,10 @@ python3.pkgs.buildPythonApplication rec {
   };
 
   build-system = [
-    python3.pkgs.hatchling
+    hatchling
   ];
 
-  dependencies = with python3.pkgs; [
+  dependencies = [
     aiohttp
   ];
 
