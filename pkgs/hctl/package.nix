@@ -36,6 +36,10 @@ buildGoModule rec {
       --zsh <($out/bin/hctl completion zsh)
   '';
 
+  # Media playback tests hit the network
+  # > Error getting local IP: dial udp 1.1.1.1:53: connect: network is unreachable
+  doCheck = false;
+
   meta = {
     description = "A tool to control your Home Assistant devices from the command-line";
     homepage = "https://github.com/xx4h/hctl";
