@@ -52,7 +52,6 @@ stdenv.mkDerivation {
     ./dont-install-systemd-units.patch
     ./dont-use-boost-static-libs.patch
     "${hass-addons}/openthread_border_router/0002-rest-support-deleting-the-dataset.patch"
-    #"${hass-addons}/openthread_border_router/0003-openthread-set-netif-route-metric-lower.patch"
   ];
 
   postPatch = ''
@@ -98,7 +97,6 @@ stdenv.mkDerivation {
     (lib.cmakeBool "OTBR_REST" true)
     (lib.cmakeBool "BUILD_TESTING" false)
 
-    # Needs npm to build the frontend code, that's another day's project
     (lib.cmakeBool "OTBR_WEB" true)
     (lib.cmakeBool "OTBR_NAT64" true)
     (lib.cmakeBool "OTBR_BACKBONE_ROUTER" true)
