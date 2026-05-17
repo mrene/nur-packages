@@ -16,7 +16,6 @@ let
     repo = "connectlife-ha";
     rev = "v${version}";
     hash = "sha256-GSlh0oSB+ZKWScQVkBZZoAGcZcIXQIiU0JvXpPzQWrc=";
-    fetchSubmodules = true;
   };
 
   connectlife = home-assistant.python.pkgs.callPackage ./connectlife.nix {};
@@ -24,10 +23,6 @@ in
 
 buildHomeAssistantComponent rec {
   inherit pname version owner domain src;
-
-  postInstall = ''
-    cp -r connectlife $out/custom_components/${domain}/
-  '';
 
   dontBuild = true;
 
