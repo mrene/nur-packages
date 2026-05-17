@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "resterm";
-  version = "0.15.0";
+  version = "0.39.3";
 
   src = fetchFromGitHub {
     owner = "unkn0wn-root";
     repo = "resterm";
     rev = "v${version}";
-    hash = "sha256-ip/0QKMK+/wbc9O3yTP2AEUgV2DJN92LmCq47YFYrhk=";
+    hash = "sha256-t5A0kFqi2q0z7zBszrGvK54vQpZG948E8byL39UfL68=";
   };
 
   vendorHash = "sha256-E/Y4kW5xy7YamUP5bxFmDCAK6RqiqGN7DpEPG1MaCHc=";

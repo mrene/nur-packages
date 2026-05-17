@@ -7,7 +7,7 @@
 
 let
   pname = "connectlife-ha";
-  version = "0.26.0";
+  version = "0.37.0";
   owner = "oyvindwe";
   domain = "connectlife";
 
@@ -15,7 +15,7 @@ let
     owner = "oyvindwe";
     repo = "connectlife-ha";
     rev = "v${version}";
-    hash = "sha256-t8IlwR6a8IhTomA31Ea7pZKDd/o4kWlXk/6mKdBoJSY=";
+    hash = "sha256-GSlh0oSB+ZKWScQVkBZZoAGcZcIXQIiU0JvXpPzQWrc=";
     fetchSubmodules = true;
   };
 

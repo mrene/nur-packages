@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "altmount";
-  version = "0.0.1-alpha4";
+  version = "0.2.0";
 
   src = fetchFromGitHub {
     owner = "javi11";
     repo = "altmount";
     rev = "v${version}";
-    hash = "sha256-kFOz9iRyVWr26eo3tBs4izM21bhRGv2qxdl8NnP48d0=";
+    hash = "sha256-l9gNsm3e5LoJdGfxOHl/QpZYKYRzCYvePyJHUHEyLWM=";
   };
 
   vendorHash = "sha256-/EJI+a9iCRecnk03Ug6MS8uyVFb1x6p9nQRYpbEhSvM=";
