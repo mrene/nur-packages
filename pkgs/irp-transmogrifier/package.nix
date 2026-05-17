@@ -8,7 +8,7 @@
 
 maven.buildMavenPackage rec {
   pname = "irp-transmogrifier";
-  version = "ci-build";
+  version = "1.2.14";
 
   src = fetchFromGitHub {
     owner = "bengtmartensson";
