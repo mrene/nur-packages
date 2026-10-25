@@ -16,22 +16,18 @@
 
 stdenv.mkDerivation rec {
   pname = "gr-sandia-utils";
-  version = "0-unstable-2022-12-05";
+  version = "0-unstable-2026-09-16";
 
   src = fetchFromGitHub {
     owner = "sandialabs";
     repo = "gr-sandia_utils";
-    rev = "d71dd7a2af54309a2c88982dfaa0747dad1cc8ca";
-    hash = "sha256-2iJv0h2kC9T+nCb+Ht254bFxlVG8zxhElm/3hYf2EF4=";
+    rev = "e9173dcaf3d3be1b7ba8db909e1d4f88aae30848";
+    hash = "sha256-xDVYVXKvzLe8jGGMrZHz0EA482cqmX+ZJEbB+3zAPys=";
   };
 
-  patches =
-    lib.optionals stdenv.isDarwin [
-      ./compile-fixes.diff
-    ]
-    ++ lib.optionals (!stdenv.isDarwin) [
-      ./add-missing-cstdint.diff
-    ];
+  patches = lib.optionals stdenv.isDarwin [
+    ./compile-fixes.diff
+  ];
 
   nativeBuildInputs = [
     cmake
