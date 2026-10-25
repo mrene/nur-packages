@@ -11,6 +11,7 @@
   boost181,
   volk,
   gr-pdu_utils,
+  nix-update-script,
 }:
 
 stdenv.mkDerivation rec {
@@ -56,6 +57,8 @@ stdenv.mkDerivation rec {
   cmakeFlags = [
     (lib.cmakeFeature "CMAKE_CXX_STANDARD" "11")
   ];
+
+  passthru.updateScript = nix-update-script { extraArgs = [ "--version=branch" ]; };
 
   meta = with lib; {
     description = "Misc blocks";
