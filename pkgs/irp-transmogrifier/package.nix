@@ -25,7 +25,7 @@ maven.buildMavenPackage rec {
     makeWrapper
   ];
 
-  mvnHash = "sha256-FP1P/Y6w2p0i2zFYvxdgq6OrhMxjSQI9473lSKrJ5fY=";
+  mvnHash = "sha256-PcD+Is++56RYFytZFGcA1NZMrrroKp6UmETz0Yh2cus=";
   mvnParameters = "-Dmaven.gitcommitid.skip=true -Dgit.commit.id=${src.rev}";
 
   makeFlags = [
