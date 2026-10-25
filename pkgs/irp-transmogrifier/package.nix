@@ -1,6 +1,7 @@
 {
   lib,
   fetchFromGitHub,
+  nix-update-script,
   maven,
   libxslt,
   jre,
@@ -41,6 +42,9 @@ maven.buildMavenPackage rec {
     wrapProgram $out/bin/${pname} \
       --prefix PATH : "${lib.makeBinPath [ jre ]}"
   '';
+
+  # Upstream also tags prereleases like `ci-build`; releases are `Version-x.y.z`.
+  passthru.updateScript = nix-update-script { extraArgs = [ "--version-regex=Version-(.*)" ]; };
 
   meta = with lib; {
     description = "Parser for IRP notation protocols, with rendering, code generation, and decoding";
